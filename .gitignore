@@ -1,0 +1,25 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Source / reference files (not part of the website)
+FIRE Website.docx
+fire-design-guidelines.txt
+
+# Node (legacy)
+node_modules/
+npm-debug.log*
+package-lock.json
+bun.lockb
+
+# Build artifacts
+dist/
+.cache/
+*.log

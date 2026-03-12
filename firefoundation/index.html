@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIRE Foundation | Education for the Future</title>
+    <meta name="description" content="The FIRE Foundation champions ethical, values-based education that nurtures compassion, integrity, courage, and love in every child.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --red: #D42B2B;
+            --red-deep: #B22222;
+            --red-light: #E84545;
+            --navy: #2B2D42;
+            --navy-light: #3D3F54;
+            --gold: #E8A838;
+            --cream: #FBF8F4;
+            --cream-dark: #F2ECE2;
+            --white: #FFFFFF;
+            --text: #3A3A4A;
+            --text-light: #6E6E7E;
+            --border: #E5DDD2;
+            --radius: 12px;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Lora', Georgia, serif;
+            color: var(--navy);
+            line-height: 1.25;
+            font-weight: 600;
+        }
+
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; height: auto; display: block; }
+        button { font-family: inherit; cursor: pointer; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== HEADER ===== */
+        .site-header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(252, 249, 242, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            transition: box-shadow 0.3s;
+        }
+        .site-header.scrolled {
+            box-shadow: 0 2px 20px rgba(44, 62, 80, 0.08);
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-img {
+            height: 48px;
+            width: auto;
+        }
+        .footer-logo-img {
+            height: 40px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .nav-desktop { display: flex; align-items: center; gap: 36px; }
+        .nav-desktop a {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-light);
+            letter-spacing: 0.01em;
+            transition: color 0.2s;
+            position: relative;
+        }
+        .nav-desktop a:hover { color: var(--navy); }
+        .nav-desktop a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 2px;
+            background: var(--navy);
+            transition: width 0.3s;
+        }
+        .nav-desktop a:hover::after { width: 100%; }
+
+        .btn-pledge-nav {
+            background: var(--red);
+            color: white;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: none;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-pledge-nav:hover {
+            background: var(--red-deep);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(212, 43, 43, 0.3);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none; border: none;
+            padding: 8px;
+            color: var(--navy);
+        }
+        .mobile-toggle svg { width: 28px; height: 28px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 72px; left: 0; right: 0; bottom: 0;
+            background: var(--cream);
+            z-index: 99;
+            padding: 32px 24px;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .mobile-nav.open { display: flex; }
+        .mobile-nav a {
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: var(--navy);
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .mobile-nav .btn-pledge-mobile {
+            margin-top: 16px;
+            background: var(--red);
+            color: white;
+            padding: 14px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            width: 100%;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 140px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px; right: -200px;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(212, 43, 43, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .hero-content { max-width: 560px; }
+        .hero-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--navy);
+            margin-bottom: 20px;
+            padding: 6px 14px;
+            background: rgba(43, 45, 66, 0.06);
+            border-radius: 6px;
+        }
+        .hero h1 {
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            margin-bottom: 24px;
+            letter-spacing: -0.03em;
+        }
+        .hero h1 em {
+            color: var(--red);
+            font-style: italic;
+        }
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 36px;
+        }
+        .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+        .btn-primary {
+            background: var(--red);
+            color: white;
+            padding: 14px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary:hover {
+            background: var(--red-deep);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 43, 43, 0.3);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--navy);
+            padding: 14px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 2px solid var(--navy);
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-outline:hover {
+            background: var(--navy);
+            color: white;
+        }
+
+        .hero-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            background: var(--cream-dark);
+        }
+        .hero-image .img-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--cream-dark) 0%, #e8dccf 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            gap: 8px;
+        }
+        .hero-image .img-placeholder svg {
+            width: 48px; height: 48px;
+            stroke: var(--text-light);
+            fill: none; stroke-width: 1.5;
+            opacity: 0.5;
+        }
+        .hero-quote {
+            margin-top: 60px;
+            padding: 28px 32px;
+            border-left: 4px solid var(--red);
+            background: var(--white);
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+        .hero-quote blockquote {
+            font-family: 'Lora', serif;
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--navy);
+            line-height: 1.5;
+        }
+        .hero-quote cite {
+            display: block;
+            margin-top: 10px;
+            font-style: normal;
+            font-size: 0.8rem;
+            color: var(--navy-light);
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        /* ===== MISSION ===== */
+        .mission {
+            padding: 100px 0;
+            background: var(--white);
+        }
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            margin-bottom: 16px;
+        }
+        .section-title {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+        .mission-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+        .mission-text p {
+            color: var(--text);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .mission-text p:last-child { margin-bottom: 0; }
+        .mission-sidebar {
+            position: sticky;
+            top: 100px;
+        }
+        .mission-image {
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            background: var(--cream-dark);
+            margin-bottom: 24px;
+        }
+        .values-strip {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .value-card {
+            padding: 20px;
+            background: var(--cream);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+        .value-card h4 {
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+        .value-card p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+        .value-icon {
+            width: 36px; height: 36px;
+            margin-bottom: 10px;
+            color: var(--navy);
+        }
+        .value-icon svg {
+            width: 100%; height: 100%;
+            stroke: var(--navy);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        /* ===== MANIFESTO ===== */
+        .manifesto {
+            padding: 100px 0;
+            background: var(--cream);
+        }
+        .manifesto-intro {
+            max-width: 720px;
+            margin-bottom: 64px;
+        }
+        .manifesto-intro p {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            line-height: 1.75;
+            margin-top: 16px;
+        }
+
+        /* Tab navigation */
+        .manifesto-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 48px;
+        }
+        .manifesto-tab {
+            padding: 12px 24px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-light);
+            background: var(--white);
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            transition: all 0.2s;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .manifesto-tab:hover {
+            color: var(--navy);
+            border-color: var(--navy);
+        }
+        .manifesto-tab.active {
+            color: var(--white);
+            background: var(--navy);
+            border-color: var(--navy);
+        }
+
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; }
+
+        /* Principle cards */
+        .principles-list {
+            display: grid;
+            gap: 24px;
+        }
+        .principle-item {
+            display: grid;
+            grid-template-columns: 56px 1fr;
+            gap: 20px;
+            padding: 28px 32px;
+            background: var(--white);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .principle-item:hover {
+            border-color: rgba(43, 45, 66, 0.2);
+            box-shadow: 0 4px 16px rgba(43, 45, 66, 0.06);
+        }
+        .principle-num {
+            font-family: 'Lora', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1;
+            padding-top: 4px;
+        }
+        .principle-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        .principle-item p {
+            color: var(--text-light);
+            font-size: 0.92rem;
+            line-height: 1.7;
+        }
+
+        /* ===== TEAM ===== */
+        .team {
+            padding: 100px 0;
+            background: var(--white);
+        }
+        .team-header {
+            max-width: 600px;
+            margin-bottom: 56px;
+        }
+        .team-header p {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-top: 12px;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+        .team-card {
+            background: var(--cream);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .team-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(44, 62, 80, 0.08);
+        }
+        .team-card-photo {
+            aspect-ratio: 1/1;
+            background: linear-gradient(135deg, var(--cream-dark) 0%, #e0d6c8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .team-card-photo .initials {
+            font-family: 'Lora', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--navy);
+            opacity: 0.2;
+        }
+        .team-card-photo .photo-label {
+            position: absolute;
+            bottom: 12px; right: 12px;
+            font-size: 0.7rem;
+            color: var(--text-light);
+            background: rgba(255,255,255,0.8);
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+        .team-card-body {
+            padding: 24px;
+        }
+        .team-card-body h3 {
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+        .team-card-role {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--navy-light);
+            margin-bottom: 4px;
+        }
+        .team-card-location {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .team-card-location svg {
+            width: 14px; height: 14px;
+            stroke: var(--text-light);
+            fill: none;
+            stroke-width: 2;
+        }
+        .team-card-body p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* ===== PLEDGE CTA ===== */
+        .pledge-cta {
+            padding: 100px 0;
+            background: var(--navy);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .pledge-cta::before {
+            content: '';
+            position: absolute;
+            top: -100px; left: 50%;
+            transform: translateX(-50%);
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(212, 43, 43, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .pledge-cta h2 {
+            color: white;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            margin-bottom: 16px;
+        }
+        .pledge-cta p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.7);
+            max-width: 600px;
+            margin: 0 auto 36px;
+            line-height: 1.7;
+        }
+        .btn-pledge-large {
+            background: var(--red);
+            color: white;
+            padding: 18px 44px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            transition: all 0.2s;
+            letter-spacing: 0.01em;
+        }
+        .btn-pledge-large:hover {
+            background: var(--red-deep);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(212, 43, 43, 0.4);
+        }
+
+        /* ===== CONTACT ===== */
+        .contact {
+            padding: 80px 0;
+            background: var(--cream);
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+        .contact h2 { margin-bottom: 16px; }
+        .contact > .container > p {
+            color: var(--text-light);
+            font-size: 1rem;
+            margin-bottom: 48px;
+            max-width: 500px;
+        }
+        .contact-person {
+            padding: 28px;
+            background: var(--white);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+        .contact-person h4 {
+            font-size: 1.05rem;
+            margin-bottom: 12px;
+        }
+        .contact-person a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--text);
+            margin-bottom: 8px;
+            transition: color 0.2s;
+        }
+        .contact-person a:hover { color: var(--navy); }
+        .contact-person a svg {
+            width: 18px; height: 18px;
+            stroke: var(--navy);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* ===== FOOTER ===== */
+        .site-footer {
+            background: var(--navy);
+            color: rgba(255,255,255,0.5);
+            padding: 48px 0 32px;
+        }
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            gap: 40px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-family: 'Lora', serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+        .footer-links {
+            display: flex;
+            gap: 28px;
+        }
+        .footer-links a {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: white; }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 24px;
+            font-size: 0.78rem;
+            line-height: 1.8;
+        }
+        .footer-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 20px;
+        }
+
+        /* ===== PLEDGE MODAL ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(44, 62, 80, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 200;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+        }
+        .modal-overlay.open {
+            display: flex;
+        }
+        .modal {
+            background: var(--white);
+            border-radius: 20px;
+            max-width: 520px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 24px 80px rgba(44, 62, 80, 0.2);
+            position: relative;
+        }
+        .modal-header {
+            padding: 32px 32px 0;
+        }
+        .modal-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+        .modal-header p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        .modal-close {
+            position: absolute;
+            top: 20px; right: 20px;
+            background: var(--cream);
+            border: none;
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--navy);
+            transition: background 0.2s;
+        }
+        .modal-close:hover { background: var(--cream-dark); }
+        .modal-close svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; }
+        .modal-body {
+            padding: 28px 32px 32px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 6px;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            font-size: 0.92rem;
+            font-family: inherit;
+            color: var(--text);
+            background: var(--cream);
+            transition: border-color 0.2s;
+            outline: none;
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--navy);
+        }
+        .form-group input::placeholder { color: var(--text-light); }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .form-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 24px 0;
+            cursor: pointer;
+        }
+        .form-checkbox input[type="checkbox"] {
+            width: 20px; height: 20px;
+            margin-top: 2px;
+            accent-color: var(--navy);
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        .form-checkbox span {
+            font-size: 0.85rem;
+            color: var(--text);
+            line-height: 1.5;
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: var(--red);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .btn-submit:hover { background: var(--red-deep); }
+
+        .modal-success {
+            display: none;
+            text-align: center;
+            padding: 48px 32px;
+        }
+        .modal-success.show { display: block; }
+        .modal-success svg {
+            width: 56px; height: 56px;
+            stroke: var(--navy); fill: none;
+            stroke-width: 1.5;
+            margin: 0 auto 16px;
+        }
+        .modal-success h3 { font-size: 1.4rem; margin-bottom: 10px; }
+        .modal-success p { color: var(--text-light); font-size: 0.95rem; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+            .hero-content { max-width: 100%; }
+            .hero-image { max-width: 500px; }
+            .mission-grid { grid-template-columns: 1fr; gap: 48px; }
+            .mission-sidebar { position: static; }
+            .team-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-desktop { display: none; }
+            .mobile-toggle { display: block; }
+            .hero { padding: 110px 0 60px; }
+            .hero h1 { font-size: 2rem; }
+            .team-grid { grid-template-columns: 1fr; max-width: 400px; }
+            .contact-grid { grid-template-columns: 1fr; gap: 20px; }
+            .footer-top { flex-direction: column; gap: 20px; }
+            .manifesto-tabs { gap: 6px; }
+            .manifesto-tab { padding: 10px 16px; font-size: 0.82rem; }
+            .principle-item { grid-template-columns: 40px 1fr; padding: 20px; gap: 14px; }
+            .form-row { grid-template-columns: 1fr; }
+            .modal-header, .modal-body { padding-left: 24px; padding-right: 24px; }
+            .mission, .manifesto, .team, .contact { padding: 64px 0; }
+            .pledge-cta { padding: 64px 0; }
+        }
+
+        /* ===== UTILITIES ===== */
+        .img-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--cream-dark) 0%, #e0d6c8 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 0.78rem;
+            gap: 6px;
+        }
+        .img-placeholder svg {
+            width: 36px; height: 36px;
+            stroke: var(--text-light); fill: none;
+            stroke-width: 1.5; opacity: 0.4;
+        }
+
+        /* Smooth scroll offset for fixed header */
+        [id] {
+            scroll-margin-top: 80px;
+        }
+
+        /* ===== GRADIENT DIVIDER ===== */
+        .divider {
+            height: 4px;
+            background: linear-gradient(90deg, var(--navy) 0%, var(--border) 50%, var(--navy) 100%);
+            border: none;
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== HEADER ========== -->
+    <header class="site-header" id="site-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="#" class="logo">
+                    <img src="images/logo.png" alt="FIRE Foundation" class="logo-img">
+                </a>
+
+                <nav class="nav-desktop">
+                    <a href="#mission">Mission</a>
+                    <a href="#manifesto">Manifesto</a>
+                    <a href="#team">Team</a>
+                    <a href="#contact">Contact</a>
+                    <button class="btn-pledge-nav" onclick="openPledgeModal()">Sign the Pledge</button>
+                </nav>
+
+                <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+                    <svg viewBox="0 0 24 24" id="menu-icon"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobile-nav">
+        <a href="#mission" onclick="closeMobileMenu()">Mission</a>
+        <a href="#manifesto" onclick="closeMobileMenu()">Manifesto</a>
+        <a href="#team" onclick="closeMobileMenu()">Team</a>
+        <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+        <button class="btn-pledge-mobile" onclick="closeMobileMenu(); openPledgeModal();">Sign the Pledge</button>
+    </nav>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <span class="hero-label">Education for the Future</span>
+                    <h1>Igniting Human Potential in the <em>Age of AI</em></h1>
+                    <p class="hero-desc">
+                        We champion ethical, values-based learning that nurtures compassion, integrity, courage, and love in every child, empowering societies to integrate AI in ways that protect humanity and sustain a just, civil world.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="btn-primary" onclick="openPledgeModal()">
+                            Sign the Pledge
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                        </button>
+                        <a href="#manifesto" class="btn-outline">Read the Manifesto</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="images/hero.jpg" alt="Students and educators collaborating in a workshop" style="width:100%;height:100%;object-fit:cover;">
+                </div>
+            </div>
+
+            <div class="hero-quote">
+                <blockquote>"Education is not the filling of a vessel but the lighting of a fire"</blockquote>
+                <cite>Plutarch</cite>
+            </div>
+        </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ========== MISSION ========== -->
+    <section class="mission" id="mission">
+        <div class="container">
+            <div class="mission-grid">
+                <div class="mission-text">
+                    <p class="section-label">Our Mission</p>
+                    <h2 class="section-title">Why We Exist</h2>
+
+                    <p>
+                        We exist at a pivotal moment in human history, where unprecedented technological power, particularly in Artificial Intelligence, is concentrated in the hands of a few, carrying both transformative promise and existential risk. The FIRE Foundation joins the global moral call to ensure that the future of civilisation is guided not only by innovation, but by responsibility, wisdom, and shared human values.
+                    </p>
+
+                    <p>
+                        We live in critically urgent times when so much of existential importance hangs in such fine a balance. The scales of right and wrong, success or failure, survival or catastrophe are balanced in a precarious equilibrium. And yet this balance of power, in terms of political sway or financial wealth, is massively tipped towards the very few.
+                    </p>
+
+                    <p>
+                        These warning voices are calling on every person to take responsibility in joining a &lsquo;moral revolution&rsquo; to steer humankind away from the precipice. The primary mission of our FIRE Foundation is to bring together these voices within our own field of expertise: <strong>education for the future</strong>.
+                    </p>
+
+                    <p>
+                        As a group of international educators, we urge each and every teacher, parent, and concerned individual to support the movement in bringing ethical, value-based education to the top of every government&rsquo;s agenda. The nurturing of every child towards compassion, integrity, courage, and love is the most fundamental way to ensure a civil society based on human values.
+                    </p>
+
+                    <p>
+                        We believe education exists to help young people know themselves, discover their inner calling, and develop their unique potential for a meaningful and fulfilling life. As automation and Artificial Intelligence reshape society, education must move beyond routine knowledge and place human-centred learning at its core.
+                    </p>
+                </div>
+
+                <div class="mission-sidebar">
+                    <div class="mission-image">
+                        <img src="images/community.jpg" alt="FIRE Foundation community" style="width:100%;height:100%;object-fit:cover;">
+                    </div>
+                    <div class="values-strip">
+                        <div class="value-card">
+                            <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+                            <h4>Compassion</h4>
+                            <p>Nurturing empathy in every child</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                            <h4>Integrity</h4>
+                            <p>Values-based character building</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+                            <h4>Courage</h4>
+                            <p>Empowering initiative and action</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                            <h4>Love</h4>
+                            <p>Communities grounded in care</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== MANIFESTO ========== -->
+    <section class="manifesto" id="manifesto">
+        <div class="container">
+            <div class="manifesto-intro">
+                <p class="section-label">The FIRE Manifesto</p>
+                <h2 class="section-title">The New Essentials of Education</h2>
+                <p>
+                    As the World Economic Forum warns, &ldquo;anything that is routine or repetitive will be automated.&rdquo;
+                    The task of education must be distilled down to those essential elements which computing intelligence cannot provide.
+                    These principles guide our vision across three dimensions.
+                </p>
+            </div>
+
+            <div class="manifesto-tabs">
+                <button class="manifesto-tab active" data-tab="general">General Principles</button>
+                <button class="manifesto-tab" data-tab="pedagogical">Pedagogical Principles</button>
+                <button class="manifesto-tab" data-tab="practical">Practical Suggestions</button>
+            </div>
+
+            <!-- General Principles -->
+            <div class="tab-panel active" id="tab-general">
+                <div class="principles-list">
+                    <div class="principle-item">
+                        <span class="principle-num">01</span>
+                        <div>
+                            <h4>Flexibility &amp; Adaptability</h4>
+                            <p>Young people are now challenged in their resourcefulness and their ability to manage change. Those who are able to adapt quickly and fluidly will fare better than those who struggle with spontaneity.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-num">02</span>
+                        <div>
+                            <h4>Creativity &amp; Imagination</h4>
+                            <p>A move away from binary and linear thinking will need to be replaced by lateral and divergent thinking skills. New ideas arrive not through the thinking which created problems but through cognitive agility which can move into unexplored dimensions.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-num">03</span>
+                        <div>
+                            <h4>Collaboration &amp; Cooperation</h4>
+                            <p>The communications revolution has presented real opportunities for networking and sharing knowledge. The old form of isolated desk-work must be supplemented by group-working on a micro level in the classroom and on a global level.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-num">04</span>
+                        <div>
+                            <h4>Empathy &amp; Compassion</h4>
+                            <p>The potentially isolating effects of digital technology and AI need to be balanced with a holistic, emotionally attuned capacity that supports empathy, self-awareness, and meaningful human connection. This is probably the single biggest challenge to children&rsquo;s well-being today.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-num">05</span>
+                        <div>
+                            <h4>Resilience &amp; Integrity</h4>
+                            <p>The transitory nature of digital media and the limitless potential of AI make it necessary to build attentiveness, concentration, willpower, and courage through healthy routine and incrementally introduced challenges. Learning to fail quickly is a crucially important life skill.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-num">06</span>
+                        <div>
+                            <h4>Critical &amp; Independent Thinking</h4>
+                            <p>One of the greatest challenges of today is the ability to discern truth through asking questions and going beyond the information given. Fake news, virtual reality, and AI-generated content demand clear thinking and astute judgement more than ever.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-num">07</span>
+                        <div>
+                            <h4>Synthesis &amp; Overview</h4>
+                            <p>With unprecedented availability of information and AI-generated content, young people need to learn to distill large amounts of data and make meaning from disparate sources. This may be a faculty akin to intuition: the ability to see the whole picture.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-num">08</span>
+                        <div>
+                            <h4>Initiative &amp; Courage</h4>
+                            <p>The danger of feeling an illusory sense of achievement in online work needs to be met with a call to make one&rsquo;s mark, to see tangible results, and to learn to value process along the way.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-num">09</span>
+                        <div>
+                            <h4>Mindfulness &amp; Centering</h4>
+                            <p>Now proven globally to be an antidote to 21st century stress, mindfulness and meditation can be introduced into education in simple and highly effective ways to promote mental health and general well-being.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-num">10</span>
+                        <div>
+                            <h4>Balance</h4>
+                            <p>A broad and holistic education involves the full integration of head, heart, and hands: the equal importance of the academic, the artistic, and the practical. Cognitive, emotional, and kinaesthetic skills given equal emphasis.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pedagogical Principles -->
+            <div class="tab-panel" id="tab-pedagogical">
+                <p style="color: var(--text-light); font-size: 0.95rem; line-height: 1.7; margin-bottom: 32px; max-width: 800px;">
+                    For these principles to work, it is imperative that teachers, coaches, and mentors are given the autonomy they need to work creatively, and for them to be fully supported by governments. One of the single-most important factors in effecting change in schools is through teacher collaboration.
+                </p>
+                <div class="principles-list">
+                    <div class="principle-item">
+                        <span class="principle-num">01</span>
+                        <div>
+                            <h4>Immersive Learning</h4>
+                            <p>Experiencing a subject through immersion in a 3 to 4 week block is more effective and meaningful than a compartmentalised programme of individual subject lessons.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-num">02</span>
+                        <div>
+                            <h4>Self-Directed Learning</h4>
+                            <p>Allowing choice and direction in project-based learning encourages curiosity, self-motivation, and ultimately an appetite for life-long learning. This is the journey from coaching, into mentoring, and finally facilitating the student into full autonomy.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-num">03</span>
+                        <div>
+                            <h4>Age Appropriate Learning</h4>
+                            <p>Discerning the different phases of child development helps in presenting appropriate content. Meeting the developmental needs of the child with the right material supports the learning process enormously.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-num">04</span>
+                        <div>
+                            <h4>Minimising Homework in Primary Years</h4>
+                            <p>Research has shown homework to be ineffective and even counter-productive to the digestion and integration of the work done during the day, especially in the primary years.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-num">05</span>
+                        <div>
+                            <h4>Experiential Learning</h4>
+                            <p>Making all learning as practical and experiential as possible brings concepts into concrete reality. The outdoor classroom and learning in nature has a powerful harmonising effect on children.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-num">06</span>
+                        <div>
+                            <h4>Narrative &amp; Metaphor</h4>
+                            <p>Infusing teaching with story, narrative, metaphor, and imagery wonderfully enhances the engagement of young people. Anecdotes and biographical elements bring content alive in a learning situation.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-num">07</span>
+                        <div>
+                            <h4>Vertical Learning</h4>
+                            <p>Mixed-age groups and combined class projects create a much more dynamic learning environment. Older children act as mentors and role models, while younger children raise their own expectations.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-num">08</span>
+                        <div>
+                            <h4>Free Play &amp; Breathing Spaces</h4>
+                            <p>In younger years, free play is critically important for developing lateral thinking, problem solving, empathy, and cooperation. In older years, short breathing spaces between sessions help re-engage learning with vitality.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-num">09</span>
+                        <div>
+                            <h4>Interdisciplinary Learning</h4>
+                            <p>Drawing out many aspects from one central theme helps children find meaning and connections between seemingly disparate areas of study. This becomes the all-important faculty of whole-brain-thinking.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-num">10</span>
+                        <div>
+                            <h4>Assessment &amp; Evaluation</h4>
+                            <p>Creating rigorous assessment through self, peer, and teacher evaluation encourages dialogue, self-reflection, and self-knowledge, ultimately replacing the need for testing, grading, and exams. Non-exam based learning relies on inner motivation rather than externalised rewards.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Practical Suggestions -->
+            <div class="tab-panel" id="tab-practical">
+                <p style="color: var(--text-light); font-size: 0.95rem; line-height: 1.7; margin-bottom: 32px; max-width: 800px;">
+                    Every school has its own unique character. These suggestions are indications based on different models and philosophies which have steered our forum. Spontaneity and creative freedom function best within a safe and clear structure.
+                </p>
+                <div class="principles-list">
+                    <div class="principle-item">
+                        <span class="principle-num">01</span>
+                        <div>
+                            <h4>The Forum or Circle</h4>
+                            <p>A weekly opportunity for students to engage in discussion, debate, sharing of issues, and even personal challenges. Facilitated with discretion and sensitivity, it can become the hidden gem amidst the busyness of school life.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-num">02</span>
+                        <div>
+                            <h4>The Opening Activity</h4>
+                            <p>Opening the day with mindful movement, a two-part song, or poem recitation refreshes and invigorates children so that the day&rsquo;s learning experiences are absorbed much more deeply.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-num">03</span>
+                        <div>
+                            <h4>Learning Outdoors</h4>
+                            <p>Spending at least half a day weekly learning outside adds a vital ingredient to well-being. The time &ldquo;lost&rdquo; is well worth the investment as restless children settle back refreshed and ready to engage again.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-num">04</span>
+                        <div>
+                            <h4>Semi-permeable Schooling</h4>
+                            <p>Creating a two-way interface as the world flows into school through inspirational speakers, and students go out on trips. This helps expand &ldquo;the tiny grey cube of education into a large transparent sphere.&rdquo;</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-num">05</span>
+                        <div>
+                            <h4>ICT Learning</h4>
+                            <p>Digital resources are best used in a structured and regulated way with age-appropriate introduction. When AI-supported tools are purposefully targeted within a lesson, they can enhance personalised learning while leaving space for live, interactive experiences.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-num">06</span>
+                        <div>
+                            <h4>Individual Study &amp; Group Collaboration</h4>
+                            <p>A fine balance between individual study and collaborative group projects prepares students for a future when cooperation and bridging of potentially conflicting paradigms will be key skills.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-num">07</span>
+                        <div>
+                            <h4>The Outdoor Classroom</h4>
+                            <p>A physical open-sided shelter within school grounds facilitating experiential learning through practical activities. Craftwork in wood, willow, wool, clay, and even iron resonates deeply with teenagers and children.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-num">08</span>
+                        <div>
+                            <h4>The Mini Project</h4>
+                            <p>Monday: bring a question. Tuesday-Wednesday: research it. Thursday: discuss findings with the group. Friday: write up process and conclusions. This exercise builds confidence, peer-teaching skills, and formalises the week&rsquo;s work.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-num">09</span>
+                        <div>
+                            <h4>Independent Projects</h4>
+                            <p>The year-long Personal Project for high school students: researching a topic of their choice, then presenting a written document, a practical response, and a verbal presentation to the school and beyond.</p>
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <span class="principle-num">10</span>
+                        <div>
+                            <h4>Free Play in Primary Years</h4>
+                            <p>Free play is vital for early years development. It promotes resilience, ingenuity, collaboration, empathy, and imagination. Play is children&rsquo;s default setting, their way of engaging with the world. A play-friendly school recognises and supports play in all its forms.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TEAM ========== -->
+    <section class="team" id="team">
+        <div class="container">
+            <div class="team-header">
+                <p class="section-label">Our People</p>
+                <h2 class="section-title">Get to Know Us</h2>
+                <p>International educators, researchers, and innovators united in our commitment to transforming education for the future.</p>
+            </div>
+
+            <div class="team-grid">
+                <!-- Krzysztof -->
+                <div class="team-card">
+                    <div class="team-card-photo">
+                        <img src="images/krzys.jpg" alt="Krzysztof Zajaczkowski" style="width:100%;height:100%;object-fit:cover;">
+                    </div>
+                    <div class="team-card-body">
+                        <h3>Krzysztof Zajaczkowski</h3>
+                        <p class="team-card-role">Founder &amp; Lead Educator</p>
+                        <p class="team-card-location"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Scotland, UK</p>
+                        <p>Passionate educator for 35 years. Head of Education at Drumduan School. Invited to an audience with HM the Queen in 2015 for his contribution to innovation in education. Has given talks in Taiwan, Mexico, New Zealand, Poland, and the UK.</p>
+                    </div>
+                </div>
+
+                <!-- Agata -->
+                <div class="team-card">
+                    <div class="team-card-photo">
+                        <img src="images/agata.jpg" alt="Agata Hofman" style="width:100%;height:100%;object-fit:cover;">
+                    </div>
+                    <div class="team-card-body">
+                        <h3>Agata Hofman</h3>
+                        <p class="team-card-role">Co-Founder</p>
+                        <p class="team-card-location"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Poland</p>
+                        <p>PhD in linguistics, mother of 5, founder of the creoGedania school and Gedania Kindergarten. Initiator of the Polish Academy of Kids, the first global university run by children for 6,000 kids in 3 countries. Author of over 50 publications on technology in education.</p>
+                    </div>
+                </div>
+
+                <!-- Csilla -->
+                <div class="team-card">
+                    <div class="team-card-photo">
+                        <img src="images/csillia.jpg" alt="Csilla Fuszek" style="width:100%;height:100%;object-fit:cover;">
+                    </div>
+                    <div class="team-card-body">
+                        <h3>Csilla Fuszek</h3>
+                        <p class="team-card-role">Program Council</p>
+                        <p class="team-card-location"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Hungary</p>
+                        <p>Over 23 years in education, specializing in gifted and talented education. Founder of the European Talent Support Network and founding director of the European Talent Center Budapest. Lectures in over 25 countries.</p>
+                    </div>
+                </div>
+
+                <!-- Arjav -->
+                <div class="team-card">
+                    <div class="team-card-photo">
+                        <img src="images/arjav.jpg" alt="Arjav Parikh" style="width:100%;height:100%;object-fit:cover;">
+                    </div>
+                    <div class="team-card-body">
+                        <h3>Arjav Parikh</h3>
+                        <p class="team-card-role">Board Member</p>
+                        <p class="team-card-location"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> India</p>
+                        <p>Passionate about encouraging the love of science in its rawest form. Began teaching science through toys in slums around India, then delivered workshops for Intel Education India reaching 12,000&ndash;15,000 children. Experienced in developing maker-spaces for design and innovation.</p>
+                    </div>
+                </div>
+
+                <!-- Agnieszka -->
+                <div class="team-card">
+                    <div class="team-card-photo">
+                        <img src="images/agnieszka.jpg" alt="Agnieszka Kosiak" style="width:100%;height:100%;object-fit:cover;">
+                    </div>
+                    <div class="team-card-body">
+                        <h3>Agnieszka Kosiak</h3>
+                        <p class="team-card-role">Program Council</p>
+                        <p class="team-card-location"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Poland</p>
+                        <p>Project Manager at DACSYSTEM with strong involvement in national AI initiatives. Contributor to the Spichlerz project developing the Polish large language model Bielik. Active in GRAI, the AI working group at Poland&rsquo;s Ministry of Digital Affairs.</p>
+                    </div>
+                </div>
+
+                <!-- Ruth -->
+                <div class="team-card">
+                    <div class="team-card-photo">
+                        <span class="initials">RB</span>
+                        <span class="photo-label">Photo placeholder</span>
+                    </div>
+                    <div class="team-card-body">
+                        <h3>Ruth Bar-Sinai</h3>
+                        <p class="team-card-role">Program Council</p>
+                        <p class="team-card-location"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Jerusalem, Israel</p>
+                        <p>Lecturer for 44 years at David Yellin Academic College of Education. Specializes in multi-identity and multicultural dialogue and in movement education. Organises meetings between Arabic and Jewish students with foreign education students from various countries.</p>
+                    </div>
+                </div>
+
+                <!-- Paul -->
+                <div class="team-card">
+                    <div class="team-card-photo">
+                        <span class="initials">PS</span>
+                        <span class="photo-label">Photo placeholder</span>
+                    </div>
+                    <div class="team-card-body">
+                        <h3>Dr. Paul Schober</h3>
+                        <p class="team-card-role">Program Council</p>
+                        <p class="team-card-location"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Austria</p>
+                        <p>Management Director of Hafelekar Consultancy. PhD in Economics with a postgraduate certificate in education management. Practitioner in Playwork, 10+ years volunteer at a Montessori School. Expert in innovation, knowledge, and change management.</p>
+                    </div>
+                </div>
+
+                <!-- Kristof -->
+                <div class="team-card">
+                    <div class="team-card-photo">
+                        <span class="initials">KF</span>
+                        <span class="photo-label">Photo placeholder</span>
+                    </div>
+                    <div class="team-card-body">
+                        <h3>Krist&oacute;f Fenyvesi, Ph.D.</h3>
+                        <p class="team-card-role">Senior Researcher</p>
+                        <p class="team-card-location"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Finland</p>
+                        <p>Senior Researcher in STEAM education at the University of Jyv&auml;skyl&auml;. Founder of the Experience Workshop: Global STEAM Network. Holds multiple professorships across Europe and Asia. Overseas Director of the International Society for the Advancement of STEAM.</p>
+                    </div>
+                </div>
+
+                <!-- Luis -->
+                <div class="team-card">
+                    <div class="team-card-photo">
+                        <span class="initials">LP</span>
+                        <span class="photo-label">Photo placeholder</span>
+                    </div>
+                    <div class="team-card-body">
+                        <h3>Luis Pastor</h3>
+                        <p class="team-card-role">Program Council</p>
+                        <p class="team-card-location"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Spain</p>
+                        <p>Professor at Universidad Rey Juan Carlos, specializing in AI in education with a focus on supporting neurodiverse learners. Leader and implementer of Erasmus+ projects bridging inclusive pedagogy, emerging technologies, and international collaboration.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PLEDGE CTA ========== -->
+    <section class="pledge-cta">
+        <div class="container" style="position: relative; z-index: 1;">
+            <h2>Join the Movement</h2>
+            <p>
+                Sign the FIRE Pledge and stand with educators, parents, and innovators worldwide
+                who believe education must be guided by human values in the age of AI.
+            </p>
+            <button class="btn-pledge-large" onclick="openPledgeModal()">Sign the Pledge</button>
+        </div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <p class="section-label">Get in Touch</p>
+            <h2 class="section-title">Contact Us</h2>
+            <p style="color: var(--text-light); font-size: 1rem; margin-bottom: 40px; max-width: 500px;">
+                Reach out to learn more about the FIRE Foundation, our programmes, or how you can get involved.
+            </p>
+            <div class="contact-grid">
+                <div class="contact-person">
+                    <h4>Agata Hofman</h4>
+                    <a href="mailto:agata@firefoundation.eu">
+                        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        agata@firefoundation.eu
+                    </a>
+                    <a href="tel:+48533011544">
+                        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        +48 533 011 544
+                    </a>
+                </div>
+                <div class="contact-person">
+                    <h4>Arjav Parikh</h4>
+                    <a href="mailto:arjav@firefoundation.eu">
+                        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        arjav@firefoundation.eu
+                    </a>
+                    <a href="tel:+919601994931">
+                        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        +91 960 199 4931
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <img src="images/logo.png" alt="FIRE Foundation" class="footer-logo-img">
+                </div>
+                <div class="footer-links">
+                    <a href="#mission">Mission</a>
+                    <a href="#manifesto">Manifesto</a>
+                    <a href="#team">Team</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-meta">
+                    <span>&copy; 2025 FIRE Foundation. All rights reserved.</span>
+                    <span>Aleja Gen. J&oacute;zefa Hallera 4/7, 80-401 Gda&nacute;sk</span>
+                    <span>KRS: 0001152519</span>
+                    <span>NIP: 9571183783</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== PLEDGE MODAL ========== -->
+    <div class="modal-overlay" id="pledge-modal">
+        <div class="modal">
+            <button class="modal-close" onclick="closePledgeModal()" aria-label="Close">
+                <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+
+            <div id="pledge-form-view">
+                <div class="modal-header">
+                    <h3>Sign the FIRE Pledge</h3>
+                    <p>By signing, you declare your support for ethical, values-based education and the FIRE Foundation&rsquo;s vision and mission.</p>
+                </div>
+                <div class="modal-body">
+                    <form id="pledge-form" onsubmit="handlePledgeSubmit(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="pledge-first">First Name *</label>
+                                <input type="text" id="pledge-first" name="firstName" placeholder="Your first name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="pledge-last">Last Name *</label>
+                                <input type="text" id="pledge-last" name="lastName" placeholder="Your last name" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pledge-email">Email Address *</label>
+                            <input type="email" id="pledge-email" name="email" placeholder="you@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pledge-country">Country *</label>
+                            <input type="text" id="pledge-country" name="country" placeholder="Your country" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="pledge-designation">Designation</label>
+                                <input type="text" id="pledge-designation" name="designation" placeholder="e.g. Teacher, Parent, Researcher">
+                            </div>
+                            <div class="form-group">
+                                <label for="pledge-org">Organisation</label>
+                                <input type="text" id="pledge-org" name="organisation" placeholder="Your organisation">
+                            </div>
+                        </div>
+                        <label class="form-checkbox">
+                            <input type="checkbox" name="contactMe">
+                            <span>I wish to be contacted further about the FIRE Foundation&rsquo;s initiatives and events.</span>
+                        </label>
+                        <button type="submit" class="btn-submit">Submit My Pledge</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-success" id="pledge-success">
+                <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <h3>Thank You for Signing!</h3>
+                <p>Your pledge has been recorded. Together, we can shape the future of education.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== SCRIPTS ========== -->
+    <script>
+        // Header scroll effect
+        const header = document.getElementById('site-header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 20);
+        });
+
+        // Mobile menu
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        const menuIcon = document.getElementById('menu-icon');
+        let menuOpen = false;
+
+        function closeMobileMenu() {
+            menuOpen = false;
+            mobileNav.classList.remove('open');
+            menuIcon.innerHTML = '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>';
+        }
+
+        mobileToggle.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            if (menuOpen) {
+                mobileNav.classList.add('open');
+                menuIcon.innerHTML = '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>';
+            } else {
+                closeMobileMenu();
+            }
+        });
+
+        // Manifesto tabs
+        const tabs = document.querySelectorAll('.manifesto-tab');
+        const panels = document.querySelectorAll('.tab-panel');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = tab.dataset.tab;
+                tabs.forEach(t => t.classList.remove('active'));
+                panels.forEach(p => p.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById('tab-' + target).classList.add('active');
+            });
+        });
+
+        // Pledge modal
+        function openPledgeModal() {
+            document.getElementById('pledge-modal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+            // Reset to form view
+            document.getElementById('pledge-form-view').style.display = 'block';
+            document.getElementById('pledge-success').classList.remove('show');
+        }
+
+        function closePledgeModal() {
+            document.getElementById('pledge-modal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal on overlay click
+        document.getElementById('pledge-modal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closePledgeModal();
+        });
+
+        // Close modal on Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closePledgeModal();
+        });
+
+        // Form submission
+        function handlePledgeSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const data = new FormData(form);
+
+            // Log data (replace with actual API call)
+            const pledge = {};
+            data.forEach((value, key) => { pledge[key] = value; });
+            pledge.contactMe = form.contactMe.checked;
+            console.log('Pledge submitted:', pledge);
+
+            // Show success
+            document.getElementById('pledge-form-view').style.display = 'none';
+            document.getElementById('pledge-success').classList.add('show');
+            form.reset();
+        }
+    </script>
+</body>
+</html>
