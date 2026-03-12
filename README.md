@@ -5,11 +5,10 @@ Official website for the FIRE Foundation, an education-focused nonprofit champio
 ## Structure
 
 ```
-firefoundation/
 ├── index.html      Single self-contained page (HTML + CSS + JS inline)
 └── images/         Compressed site images
 ```
 
 ## Deployment
 
-Static site — serve the `firefoundation/` folder from any web server or hosting platform (Netlify, Vercel, GitHub Pages, etc.). No build step required.
+Static site deployed via GitHub Pages. No build step required.
