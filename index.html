@@ -63,22 +63,14 @@
             position: fixed;
             top: 0; left: 0; right: 0;
             z-index: 100;
-            background: transparent;
-            backdrop-filter: none;
-            border-bottom: 1px solid transparent;
-            transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+            background: rgba(252, 249, 242, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            transition: box-shadow 0.3s;
         }
         .site-header.scrolled {
-            background: rgba(252, 249, 242, 0.95);
-            backdrop-filter: blur(12px);
-            border-bottom-color: var(--border);
             box-shadow: 0 2px 20px rgba(44, 62, 80, 0.08);
         }
-        .site-header:not(.scrolled) .nav-desktop a { color: rgba(255,255,255,0.75); }
-        .site-header:not(.scrolled) .nav-desktop a:hover { color: white; }
-        .site-header:not(.scrolled) .nav-desktop a::after { background: white; }
-        .site-header:not(.scrolled) .btn-pledge-nav { background: var(--red); color: white; }
-        .site-header:not(.scrolled) .mobile-toggle { color: white; }
         .header-inner {
             display: flex;
             align-items: center;
@@ -177,63 +169,49 @@
 
         /* ===== HERO ===== */
         .hero {
-            padding: 160px 0 80px;
+            padding: 140px 0 80px;
             position: relative;
             overflow: hidden;
-            background: #0a0a0a;
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
         }
         .hero::before {
             content: '';
             position: absolute;
-            inset: 0;
-            background: url('images/dandelion.jpg') center right / cover no-repeat;
-            opacity: 0.5;
+            top: -200px; right: -200px;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(212, 43, 43, 0.06) 0%, transparent 70%);
             pointer-events: none;
         }
-        .hero::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.6) 50%, transparent 100%);
-            pointer-events: none;
-        }
-        .hero .container { position: relative; z-index: 1; }
         .hero-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 0;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
             align-items: center;
         }
-        .hero-content { max-width: 600px; }
+        .hero-content { max-width: 560px; }
         .hero-label {
             display: inline-block;
             font-size: 0.75rem;
             font-weight: 600;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.6);
+            color: var(--navy);
             margin-bottom: 20px;
             padding: 6px 14px;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(43, 45, 66, 0.06);
             border-radius: 6px;
         }
         .hero h1 {
-            font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
             margin-bottom: 24px;
             letter-spacing: -0.03em;
-            color: var(--white);
         }
         .hero h1 em {
-            color: var(--red-light);
+            color: var(--red);
             font-style: italic;
         }
         .hero-desc {
             font-size: 1.1rem;
-            color: rgba(255,255,255,0.7);
+            color: var(--text-light);
             line-height: 1.7;
             margin-bottom: 36px;
         }
@@ -258,39 +236,44 @@
         }
         .btn-outline {
             background: transparent;
-            color: var(--white);
+            color: var(--navy);
             padding: 14px 30px;
             border-radius: 10px;
             font-weight: 600;
             font-size: 0.95rem;
-            border: 2px solid rgba(255,255,255,0.3);
+            border: 2px solid var(--navy);
             transition: all 0.2s;
             display: inline-flex;
             align-items: center;
             gap: 8px;
         }
         .btn-outline:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: rgba(255,255,255,0.5);
+            background: var(--navy);
             color: white;
         }
 
         .hero-image {
-            display: none;
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            background: #1a1a1a;
+            box-shadow: 0 8px 40px rgba(43, 45, 66, 0.15);
+            border: 6px solid var(--cream-dark);
+            outline: 1px solid var(--border);
         }
         .hero-quote {
             margin-top: 60px;
             padding: 28px 32px;
             border-left: 4px solid var(--red);
-            background: rgba(255,255,255,0.05);
+            background: var(--white);
             border-radius: 0 var(--radius) var(--radius) 0;
-            max-width: 600px;
         }
         .hero-quote blockquote {
             font-family: 'Lora', serif;
             font-size: 1.25rem;
             font-style: italic;
-            color: rgba(255,255,255,0.9);
+            color: var(--navy);
             line-height: 1.5;
         }
         .hero-quote cite {
@@ -298,7 +281,7 @@
             margin-top: 10px;
             font-style: normal;
             font-size: 0.8rem;
-            color: rgba(255,255,255,0.5);
+            color: var(--navy-light);
             font-weight: 600;
             letter-spacing: 0.08em;
             text-transform: uppercase;
@@ -835,11 +818,8 @@
         @media (max-width: 768px) {
             .nav-desktop { display: none; }
             .mobile-toggle { display: block; }
-            .hero { padding: 120px 0 60px; min-height: 80vh; }
+            .hero { padding: 110px 0 60px; }
             .hero h1 { font-size: 2rem; }
-            .hero-grid { grid-template-columns: 1fr; }
-            .hero::before { opacity: 0.3; }
-            .hero::after { background: linear-gradient(180deg, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.7) 50%, rgba(10,10,10,0.5) 100%); }
             .team-grid { grid-template-columns: 1fr; max-width: 400px; }
             .contact-grid { grid-template-columns: 1fr; gap: 20px; }
             .footer-top { flex-direction: column; gap: 20px; }
@@ -925,7 +905,7 @@
                 <div class="hero-content">
                     <span class="hero-label">Education for the Future</span>
                     <h1>Forum for the International <em>Renewal of Education</em></h1>
-                    <p class="hero-subtitle" style="font-size:1.05rem;color:rgba(255,255,255,0.5);margin-top:8px;margin-bottom:12px;font-style:italic;">Igniting human potential through holistic learning</p>
+                    <p class="hero-subtitle" style="font-size:1.05rem;color:var(--text-light);margin-top:8px;margin-bottom:12px;font-style:italic;">Igniting human potential through holistic learning</p>
                     <p class="hero-desc">
                         We champion ethical, values-based learning that nurtures compassion, integrity, courage, and love in every child, empowering societies to protect humanity and sustain a just, civil world.
                     </p>
