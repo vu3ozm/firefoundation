@@ -28,6 +28,10 @@
             --text-light: #6E6E7E;
             --border: #E5DDD2;
             --radius: 12px;
+            /* Principle section accent colours */
+            --accent-general: #2B2D42;
+            --accent-pedagogical: #1A7A6D;
+            --accent-practical: #C4872A;
         }
 
         html { scroll-behavior: smooth; }
@@ -400,11 +404,14 @@
             color: var(--navy);
             border-color: var(--navy);
         }
-        .manifesto-tab.active {
-            color: var(--white);
-            background: var(--navy);
-            border-color: var(--navy);
-        }
+
+        /* Per-section tab colours */
+        .manifesto-tab[data-tab="general"]:hover { color: var(--accent-general); border-color: var(--accent-general); }
+        .manifesto-tab[data-tab="general"].active { background: var(--accent-general); border-color: var(--accent-general); color: var(--white); }
+        .manifesto-tab[data-tab="pedagogical"]:hover { color: var(--accent-pedagogical); border-color: var(--accent-pedagogical); }
+        .manifesto-tab[data-tab="pedagogical"].active { background: var(--accent-pedagogical); border-color: var(--accent-pedagogical); color: var(--white); }
+        .manifesto-tab[data-tab="practical"]:hover { color: var(--accent-practical); border-color: var(--accent-practical); }
+        .manifesto-tab[data-tab="practical"].active { background: var(--accent-practical); border-color: var(--accent-practical); color: var(--white); }
 
         .tab-panel { display: none; }
         .tab-panel.active { display: block; }
@@ -445,6 +452,13 @@
             font-size: 0.92rem;
             line-height: 1.7;
         }
+        /* Per-section card accents */
+        #tab-general .principle-item { border-left: 4px solid var(--accent-general); }
+        #tab-general .principle-num { color: var(--accent-general); }
+        #tab-pedagogical .principle-item { border-left: 4px solid var(--accent-pedagogical); }
+        #tab-pedagogical .principle-num { color: var(--accent-pedagogical); }
+        #tab-practical .principle-item { border-left: 4px solid var(--accent-practical); }
+        #tab-practical .principle-num { color: var(--accent-practical); }
 
         /* ===== TEAM ===== */
         .team {
