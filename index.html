@@ -116,6 +116,82 @@
         }
         .nav-desktop a:hover::after { width: 100%; }
 
+        /* Nav dropdown */
+        .nav-dropdown {
+            position: relative;
+        }
+        .nav-dropdown > a {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .nav-dropdown > a .dropdown-arrow {
+            width: 12px; height: 12px;
+            stroke: currentColor; fill: none;
+            stroke-width: 2;
+            transition: transform 0.2s;
+        }
+        .nav-dropdown:hover > a .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        .nav-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding-top: 12px;
+            min-width: 320px;
+            z-index: 101;
+        }
+        .nav-dropdown:hover .nav-dropdown-menu {
+            display: block;
+        }
+        .nav-dropdown-menu-inner {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: 0 8px 32px rgba(44, 62, 80, 0.12);
+            padding: 12px;
+        }
+        .nav-dropdown-menu a {
+            display: block;
+            padding: 12px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem !important;
+            color: var(--text) !important;
+            line-height: 1.5;
+            transition: background 0.15s;
+        }
+        .nav-dropdown-menu a::after { display: none !important; }
+        .nav-dropdown-menu a:hover {
+            background: var(--cream);
+            color: var(--navy) !important;
+        }
+        .nav-dropdown-menu .article-title {
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+        .nav-dropdown-menu .article-meta {
+            font-size: 0.78rem;
+            color: var(--text-light);
+        }
+        .nav-dropdown-menu .article-contributors {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-top: 6px;
+        }
+        .nav-dropdown-menu .contributor-tag {
+            font-size: 0.7rem;
+            background: var(--cream-dark);
+            color: var(--navy-light);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
         .btn-pledge-nav {
             background: var(--red);
             color: white;
@@ -893,6 +969,25 @@
                     <a href="#mission">Mission</a>
                     <a href="#manifesto">Manifesto</a>
                     <a href="#team">Team</a>
+                    <div class="nav-dropdown">
+                        <a href="javascript:void(0)">Reading <svg class="dropdown-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></a>
+                        <div class="nav-dropdown-menu">
+                            <div class="nav-dropdown-menu-inner">
+                                <a href="articles/road-to-a-better-self.pdf" target="_blank">
+                                    <div class="article-title">Road to a Better Self</div>
+                                    <div class="article-meta">Article &middot; PDF</div>
+                                    <div class="article-contributors">
+                                        <span class="contributor-tag">Csilla Fuszek</span>
+                                        <span class="contributor-tag">Agata Hofman</span>
+                                        <span class="contributor-tag">Arjav Parikh</span>
+                                        <span class="contributor-tag">Luis Pastor</span>
+                                        <span class="contributor-tag">Agnieszka Kosiak</span>
+                                        <span class="contributor-tag">Krzysztof Zajaczkowski</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <a href="#contact">Contact</a>
                     <button class="btn-pledge-nav" onclick="openPledgeModal()">Sign the Pledge</button>
                 </nav>
@@ -908,6 +1003,7 @@
         <a href="#mission" onclick="closeMobileMenu()">Mission</a>
         <a href="#manifesto" onclick="closeMobileMenu()">Manifesto</a>
         <a href="#team" onclick="closeMobileMenu()">Team</a>
+        <a href="articles/road-to-a-better-self.pdf" target="_blank" onclick="closeMobileMenu()">Reading: Road to a Better Self</a>
         <a href="#contact" onclick="closeMobileMenu()">Contact</a>
         <button class="btn-pledge-mobile" onclick="closeMobileMenu(); openPledgeModal();">Sign the Pledge</button>
     </nav>
@@ -1354,7 +1450,7 @@
                         <img src="images/paul.jpg" alt="Dr. Paul Schober" style="width:100%;height:100%;object-fit:cover;">
                     </div>
                     <div class="team-card-body">
-                        <h3>Dr. Paul Schober</h3>
+                        <h3>Paul Schober</h3>
                         <p class="team-card-role">FIRE Member</p>
                         <p class="team-card-location"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Austria</p>
                         <p>Management Director of Hafelekar Consultancy. PhD in Economics with a postgraduate certificate in education management. Practitioner in Playwork, 10+ years volunteer at a Montessori School. Expert in innovation, knowledge, and change management.</p>
@@ -1367,7 +1463,7 @@
                         <img src="images/kristof.jpg" alt="Kristóf Fenyvesi, Ph.D." style="width:100%;height:100%;object-fit:cover;">
                     </div>
                     <div class="team-card-body">
-                        <h3>Krist&oacute;f Fenyvesi, Ph.D.</h3>
+                        <h3>Krist&oacute;f Fenyvesi</h3>
                         <p class="team-card-role">FIRE Member</p>
                         <p class="team-card-location"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Finland</p>
                         <p>Senior Researcher in STEAM education at the University of Jyv&auml;skyl&auml;. Founder of the Experience Workshop: Global STEAM Network. Holds multiple professorships across Europe and Asia. Overseas Director of the International Society for the Advancement of STEAM.</p>
@@ -1377,8 +1473,7 @@
                 <!-- Luis -->
                 <div class="team-card">
                     <div class="team-card-photo">
-                        <span class="initials">LP</span>
-                        <span class="photo-label">Photo placeholder</span>
+                        <img src="images/luis.png" alt="Luis Pastor" style="width:100%;height:100%;object-fit:cover;">
                     </div>
                     <div class="team-card-body">
                         <h3>Luis Pastor</h3>
@@ -1450,6 +1545,7 @@
                     <a href="#manifesto">Manifesto</a>
                     <a href="#team">Team</a>
                     <a href="#contact">Contact</a>
+                    <a href="privacy-policy.html">Privacy Policy</a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -1493,22 +1589,123 @@
                         </div>
                         <div class="form-group">
                             <label for="pledge-country">Country *</label>
-                            <input type="text" id="pledge-country" name="country" placeholder="Your country" required>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="pledge-designation">Designation</label>
-                                <input type="text" id="pledge-designation" name="designation" placeholder="e.g. Teacher, Parent, Researcher">
-                            </div>
-                            <div class="form-group">
-                                <label for="pledge-org">Organisation</label>
-                                <input type="text" id="pledge-org" name="organisation" placeholder="Your organisation">
-                            </div>
+                            <select id="pledge-country" name="country" required>
+                                <option value="" disabled selected>Select your country</option>
+                                <option value="AF">&#127462;&#127467; Afghanistan</option>
+                                <option value="AL">&#127462;&#127473; Albania</option>
+                                <option value="DZ">&#127465;&#127487; Algeria</option>
+                                <option value="AR">&#127462;&#127479; Argentina</option>
+                                <option value="AM">&#127462;&#127474; Armenia</option>
+                                <option value="AU">&#127462;&#127482; Australia</option>
+                                <option value="AT">&#127462;&#127481; Austria</option>
+                                <option value="AZ">&#127462;&#127487; Azerbaijan</option>
+                                <option value="BD">&#127463;&#127465; Bangladesh</option>
+                                <option value="BY">&#127463;&#127486; Belarus</option>
+                                <option value="BE">&#127463;&#127466; Belgium</option>
+                                <option value="BO">&#127463;&#127476; Bolivia</option>
+                                <option value="BA">&#127463;&#127462; Bosnia and Herzegovina</option>
+                                <option value="BR">&#127463;&#127479; Brazil</option>
+                                <option value="BG">&#127463;&#127468; Bulgaria</option>
+                                <option value="KH">&#127472;&#127469; Cambodia</option>
+                                <option value="CM">&#127464;&#127474; Cameroon</option>
+                                <option value="CA">&#127464;&#127462; Canada</option>
+                                <option value="CL">&#127464;&#127473; Chile</option>
+                                <option value="CN">&#127464;&#127475; China</option>
+                                <option value="CO">&#127464;&#127476; Colombia</option>
+                                <option value="CR">&#127464;&#127479; Costa Rica</option>
+                                <option value="HR">&#127469;&#127479; Croatia</option>
+                                <option value="CU">&#127464;&#127482; Cuba</option>
+                                <option value="CY">&#127464;&#127486; Cyprus</option>
+                                <option value="CZ">&#127464;&#127487; Czech Republic</option>
+                                <option value="DK">&#127465;&#127472; Denmark</option>
+                                <option value="DO">&#127465;&#127476; Dominican Republic</option>
+                                <option value="EC">&#127466;&#127464; Ecuador</option>
+                                <option value="EG">&#127466;&#127468; Egypt</option>
+                                <option value="SV">&#127480;&#127483; El Salvador</option>
+                                <option value="EE">&#127466;&#127466; Estonia</option>
+                                <option value="ET">&#127466;&#127481; Ethiopia</option>
+                                <option value="FI">&#127467;&#127470; Finland</option>
+                                <option value="FR">&#127467;&#127479; France</option>
+                                <option value="GE">&#127468;&#127466; Georgia</option>
+                                <option value="DE">&#127465;&#127466; Germany</option>
+                                <option value="GH">&#127468;&#127469; Ghana</option>
+                                <option value="GR">&#127468;&#127479; Greece</option>
+                                <option value="GT">&#127468;&#127481; Guatemala</option>
+                                <option value="HN">&#127469;&#127475; Honduras</option>
+                                <option value="HK">&#127469;&#127472; Hong Kong</option>
+                                <option value="HU">&#127469;&#127482; Hungary</option>
+                                <option value="IS">&#127470;&#127480; Iceland</option>
+                                <option value="IN">&#127470;&#127475; India</option>
+                                <option value="ID">&#127470;&#127465; Indonesia</option>
+                                <option value="IR">&#127470;&#127479; Iran</option>
+                                <option value="IQ">&#127470;&#127478; Iraq</option>
+                                <option value="IE">&#127470;&#127466; Ireland</option>
+                                <option value="IL">&#127470;&#127473; Israel</option>
+                                <option value="IT">&#127470;&#127481; Italy</option>
+                                <option value="JM">&#127471;&#127474; Jamaica</option>
+                                <option value="JP">&#127471;&#127477; Japan</option>
+                                <option value="JO">&#127471;&#127476; Jordan</option>
+                                <option value="KZ">&#127472;&#127487; Kazakhstan</option>
+                                <option value="KE">&#127472;&#127466; Kenya</option>
+                                <option value="KR">&#127472;&#127479; South Korea</option>
+                                <option value="KW">&#127472;&#127484; Kuwait</option>
+                                <option value="LV">&#127473;&#127483; Latvia</option>
+                                <option value="LB">&#127473;&#127463; Lebanon</option>
+                                <option value="LT">&#127473;&#127481; Lithuania</option>
+                                <option value="LU">&#127473;&#127482; Luxembourg</option>
+                                <option value="MY">&#127474;&#127486; Malaysia</option>
+                                <option value="MX">&#127474;&#127485; Mexico</option>
+                                <option value="MA">&#127474;&#127462; Morocco</option>
+                                <option value="MM">&#127474;&#127474; Myanmar</option>
+                                <option value="NP">&#127475;&#127477; Nepal</option>
+                                <option value="NL">&#127475;&#127473; Netherlands</option>
+                                <option value="NZ">&#127475;&#127487; New Zealand</option>
+                                <option value="NG">&#127475;&#127468; Nigeria</option>
+                                <option value="NO">&#127475;&#127476; Norway</option>
+                                <option value="PK">&#127477;&#127472; Pakistan</option>
+                                <option value="PA">&#127477;&#127462; Panama</option>
+                                <option value="PY">&#127477;&#127486; Paraguay</option>
+                                <option value="PE">&#127477;&#127466; Peru</option>
+                                <option value="PH">&#127477;&#127469; Philippines</option>
+                                <option value="PL">&#127477;&#127473; Poland</option>
+                                <option value="PT">&#127477;&#127481; Portugal</option>
+                                <option value="QA">&#127478;&#127462; Qatar</option>
+                                <option value="RO">&#127479;&#127476; Romania</option>
+                                <option value="RU">&#127479;&#127482; Russia</option>
+                                <option value="SA">&#127480;&#127462; Saudi Arabia</option>
+                                <option value="RS">&#127479;&#127480; Serbia</option>
+                                <option value="SG">&#127480;&#127468; Singapore</option>
+                                <option value="SK">&#127480;&#127472; Slovakia</option>
+                                <option value="SI">&#127480;&#127470; Slovenia</option>
+                                <option value="ZA">&#127487;&#127462; South Africa</option>
+                                <option value="ES">&#127466;&#127480; Spain</option>
+                                <option value="LK">&#127473;&#127472; Sri Lanka</option>
+                                <option value="SE">&#127480;&#127466; Sweden</option>
+                                <option value="CH">&#127464;&#127469; Switzerland</option>
+                                <option value="TW">&#127481;&#127484; Taiwan</option>
+                                <option value="TH">&#127481;&#127469; Thailand</option>
+                                <option value="TR">&#127481;&#127479; Turkey</option>
+                                <option value="UA">&#127482;&#127462; Ukraine</option>
+                                <option value="AE">&#127462;&#127466; United Arab Emirates</option>
+                                <option value="GB">&#127468;&#127463; United Kingdom</option>
+                                <option value="US">&#127482;&#127480; United States</option>
+                                <option value="UY">&#127482;&#127486; Uruguay</option>
+                                <option value="UZ">&#127482;&#127487; Uzbekistan</option>
+                                <option value="VE">&#127483;&#127466; Venezuela</option>
+                                <option value="VN">&#127483;&#127475; Vietnam</option>
+                                <option value="ZW">&#127487;&#127484; Zimbabwe</option>
+                                <option value="OTHER">Other</option>
+                            </select>
                         </div>
                         <label class="form-checkbox">
                             <input type="checkbox" name="contactMe">
                             <span>I wish to be contacted further about the FIRE Foundation&rsquo;s initiatives and events.</span>
                         </label>
+                        <label class="form-checkbox">
+                            <input type="checkbox" name="gdprConsent" required>
+                            <span>I agree that FIRE Foundation may store and process my personal data (name, email) for the purpose of recording my pledge. Read our <a href="privacy-policy.html" target="_blank" style="color:var(--red);text-decoration:underline;">Privacy Policy</a>. *</span>
+                        </label>
+                        <p style="font-size:0.82rem;color:var(--text-light);text-align:center;margin:20px 0 16px;line-height:1.5;font-style:italic;">Adding your name helps us promote ethical, values-based education by FIRE worldwide.</p>
                         <button type="submit" class="btn-submit">Submit My Pledge</button>
                     </form>
                 </div>
