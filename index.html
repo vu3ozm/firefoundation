@@ -1791,18 +1791,36 @@
         function handlePledgeSubmit(e) {
             e.preventDefault();
             const form = e.target;
-            const data = new FormData(form);
+            const submitBtn = form.querySelector('.btn-submit');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
 
-            // Log data (replace with actual API call)
-            const pledge = {};
-            data.forEach((value, key) => { pledge[key] = value; });
-            pledge.contactMe = form.contactMe.checked;
-            console.log('Pledge submitted:', pledge);
+            const pledge = {
+                firstName: form.firstName.value,
+                lastName: form.lastName.value,
+                email: form.email.value,
+                country: form.country.options[form.country.selectedIndex].text.replace(/^[\u{1F1E0}-\u{1F1FF}]{2}\s*/u, ''),
+                contactMe: form.contactMe.checked
+            };
 
-            // Show success
-            document.getElementById('pledge-form-view').style.display = 'none';
-            document.getElementById('pledge-success').classList.add('show');
-            form.reset();
+            fetch('https://script.google.com/macros/s/AKfycbw8aXQN02yrWJ-GlRMqZev1LcTP3C2jmit-zqnOwugi1Uxy2dCxYpng7fQg9zPMzCsIkg/exec', {
+                method: 'POST',
+                body: JSON.stringify(pledge)
+            })
+            .then(function(res) { return res.json(); })
+            .then(function() {
+                document.getElementById('pledge-form-view').style.display = 'none';
+                document.getElementById('pledge-success').classList.add('show');
+                form.reset();
+            })
+            .catch(function() {
+                alert('Something went wrong. Please try again.');
+            })
+            .finally(function() {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
         }
     </script>
 </body>
