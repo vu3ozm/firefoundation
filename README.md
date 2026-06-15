@@ -21,6 +21,7 @@ firefoundation/
 │   ├── agata.jpg           # Team photo - Agata Hofman
 │   ├── csillia.jpg         # Team photo - Csilla Fuszek
 │   ├── arjav.jpg           # Team photo - Arjav Parikh
+│   ├── nagamani.jpg        # Team photo - Nagamani Krishnamurthy
 │   ├── agnieszka.jpg       # Team photo - Agnieszka Kosiak
 │   ├── ruth.jpeg           # Team photo - Ruth Bar-Sinai
 │   ├── paul.jpg            # Team photo - Paul Schober
@@ -44,7 +45,7 @@ firefoundation/
 | Hero        | Tagline, call-to-action, Plutarch quote                             |
 | Mission     | Why FIRE exists, core values (Compassion, Integrity, Courage, Love) |
 | Manifesto   | 3 tabbed sections: General, Pedagogical, Practical (10 principles each) |
-| Team        | 9 team member cards with photos and bios                            |
+| Team        | 10 team member cards with photos and bios                           |
 | Pledge CTA  | Call-to-action to sign the pledge                                   |
 | Contact     | Contact details for Agata Hofman and Arjav Parikh                   |
 | Footer      | Logo, nav links, privacy policy link, legal info                    |
