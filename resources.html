@@ -35,6 +35,7 @@
             background: var(--cream);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
         h1, h2, h3, h4 {
@@ -122,6 +123,9 @@
             border-radius: var(--radius);
             overflow: hidden;
         }
+        .video-card + .video-card {
+            margin-top: 32px;
+        }
         .video-embed {
             position: relative;
             padding-bottom: 56.25%;
@@ -140,6 +144,7 @@
         .video-info h3 {
             font-size: 1.3rem;
             margin-bottom: 6px;
+            overflow-wrap: anywhere;
         }
         .video-meta {
             font-size: 0.8rem;
@@ -270,8 +275,11 @@
         }
 
         @media (max-width: 600px) {
+            .page-header .container { gap: 16px; }
+            .page-header a.back { white-space: nowrap; }
             .footer-top { flex-direction: column; gap: 20px; }
             .footer-right { align-items: flex-start; }
+            .video-info h3 { font-size: 1.1rem; }
             .video-info { padding: 20px; }
         }
     </style>
@@ -319,6 +327,44 @@
                             curiosity, moral courage, and the capacity for genuine connection,
                             more than ever. The video opens at a pivotal moment in her talk where she brings
                             these ideas together.
+                        </p>
+                    </div>
+                </div>
+                <div class="video-card" id="podcast-part-1">
+                    <div class="video-embed">
+                        <iframe
+                            src="https://www.youtube.com/embed/Uwof1e5in80"
+                            title="FIRE Board Member | Krzysztof Zajaczkowski in talks with Samir Rawjee | Part 1"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3>FIRE Board Member | Krzysztof Zajaczkowski in talks with Samir Rawjee | Part 1</h3>
+                        <p class="video-meta">Krzysztof Zajaczkowski &middot; Samir Rawjee &middot; Part 1</p>
+                        <p>
+                            In this FIRE Foundation conversation, board member Krzysztof Zajaczkowski
+                            speaks with Samir Rawjee about education, human development, and the
+                            questions behind the foundation's work.
+                        </p>
+                    </div>
+                </div>
+                <div class="video-card" id="podcast-part-2">
+                    <div class="video-embed">
+                        <iframe
+                            src="https://www.youtube.com/embed/0itGdBg_QcE"
+                            title="FIRE Board Member | Krzysztof Zajaczkowski in talks with Samir Rawjee | Part 2"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3>FIRE Board Member | Krzysztof Zajaczkowski in talks with Samir Rawjee | Part 2</h3>
+                        <p class="video-meta">Krzysztof Zajaczkowski &middot; Samir Rawjee &middot; Part 2</p>
+                        <p>
+                            The second part continues the discussion with Samir Rawjee, expanding on
+                            the role of educators, communities, and values-led learning in a changing
+                            world.
                         </p>
                     </div>
                 </div>
