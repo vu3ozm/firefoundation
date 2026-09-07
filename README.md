@@ -26,19 +26,20 @@ firefoundation/
 │   ├── ruth.jpeg           # Team photo - Ruth Bar-Sinai
 │   ├── paul.jpg            # Team photo - Paul Schober
 │   ├── kristof.jpg         # Team photo - Kristof Fenyvesi
-│   └── luis.png            # Team photo - Luis Pastor
+│   ├── luis.png            # Team photo - Luis Pastor
+│   └── etsn.png            # Partner logo - ETSN
 └── articles/
     └── road-to-a-better-self.pdf   # Article by FIRE team members
 ```
 
-## Tech Stack
+## Tech stack
 
-- **Pure HTML/CSS/JS** — no build tools, no frameworks
-- **Google Fonts** — Lora (headings) + Inter (body)
-- **Google Apps Script** — backend for pledge form submissions
-- **Google Sheets** — data storage for pledge submissions
+- **Pure HTML/CSS/JS** - no build tools, no frameworks
+- **Google fonts** - Lora (headings) + Inter (body)
+- **Google Apps Script** - backend for pledge form submissions
+- **Google Sheets** - data storage for pledge submissions
 
-## Site Sections
+## Site sections
 
 | Section     | Description                                                         |
 |-------------|---------------------------------------------------------------------|
@@ -46,13 +47,15 @@ firefoundation/
 | Mission     | Why FIRE exists, core values (Compassion, Integrity, Courage, Love) |
 | Manifesto   | 3 tabbed sections: General, Pedagogical, Practical (10 principles each) |
 | Team        | 10 team member cards with photos and bios                           |
+| Partners    | Partner organisations aligned with FIRE's education mission          |
+| Our work    | Talks, articles, and future project entries                         |
 | Pledge CTA  | Call-to-action to sign the pledge                                   |
 | Contact     | Contact details for Agata Hofman and Arjav Parikh                   |
 | Footer      | Logo, nav links, privacy policy link, legal info                    |
 
 ## Navigation
 
-The desktop nav includes a **Reading** dropdown that lists articles published by FIRE team members. Each article entry shows the title, format, and contributing team members. On mobile, articles appear as direct links in the nav menu.
+The desktop nav includes an **Our work** dropdown for talks, articles, and future projects from the FIRE Foundation team. Each entry shows the title, format, and contributing team members. On mobile, work items appear as direct links in the nav menu. The page remains available at `resources.html` for compatibility with existing links.
 
 ---
 

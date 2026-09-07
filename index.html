@@ -156,6 +156,7 @@
         }
         .nav-dropdown-menu a {
             display: block;
+            position: relative;
             padding: 12px 14px;
             border-radius: 8px;
             font-size: 0.85rem !important;
@@ -192,9 +193,17 @@
             font-weight: 500;
         }
         .nav-dropdown-menu-inner a + a {
-            border-top: 1px solid var(--border);
             margin-top: 4px;
             padding-top: 14px;
+        }
+        .nav-dropdown-menu-inner a + a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 14px;
+            right: 14px;
+            height: 1px;
+            background: var(--border);
         }
 
         .btn-pledge-nav {
@@ -462,6 +471,46 @@
             line-height: 1.75;
             margin-top: 16px;
         }
+        .manifesto-emphasis {
+            position: relative;
+            max-width: 860px;
+            padding: 22px 26px 22px 30px;
+            background: linear-gradient(90deg, rgba(212, 43, 43, 0.1), rgba(232, 168, 56, 0.16));
+            border: 1px solid rgba(212, 43, 43, 0.22);
+            border-radius: var(--radius);
+            box-shadow: 0 6px 20px rgba(43, 45, 66, 0.06);
+            font-weight: 500;
+            font-size: 1rem;
+            line-height: 1.65;
+            color: var(--navy) !important;
+        }
+        .manifesto-emphasis strong {
+            font-weight: 700;
+            color: var(--navy);
+        }
+        .manifesto-intro .manifesto-emphasis {
+            font-family: 'Lora', Georgia, serif;
+            font-size: 1.18rem;
+            line-height: 1.6;
+            margin-top: 22px;
+        }
+        .tab-panel > .manifesto-emphasis {
+            margin-bottom: 32px;
+            border-radius: var(--radius);
+            box-shadow: 0 4px 14px rgba(43, 45, 66, 0.05);
+        }
+        #tab-general > .manifesto-emphasis {
+            background: rgba(43, 45, 66, 0.06);
+            border-color: rgba(43, 45, 66, 0.14);
+        }
+        #tab-pedagogical > .manifesto-emphasis {
+            background: rgba(37, 99, 235, 0.07);
+            border-color: rgba(37, 99, 235, 0.16);
+        }
+        #tab-practical > .manifesto-emphasis {
+            background: rgba(196, 135, 42, 0.1);
+            border-color: rgba(196, 135, 42, 0.18);
+        }
 
         /* Tab navigation */
         .manifesto-tabs {
@@ -641,6 +690,76 @@
             font-size: 0.85rem;
             color: var(--text-light);
             line-height: 1.6;
+        }
+
+        /* ===== PARTNERS ===== */
+        .partners {
+            padding: 88px 0;
+            background: var(--cream);
+        }
+        .partners-header {
+            max-width: 620px;
+            margin-bottom: 40px;
+        }
+        .partners-header p:not(.section-label) {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-top: 12px;
+        }
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .partner-card {
+            display: grid;
+            grid-template-columns: 160px 1fr;
+            gap: 24px;
+            align-items: center;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            color: var(--text);
+            transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+        }
+        .partner-card:hover {
+            border-color: rgba(212, 43, 43, 0.28);
+            box-shadow: 0 8px 24px rgba(43, 45, 66, 0.08);
+            transform: translateY(-2px);
+            color: var(--text);
+        }
+        .partner-logo {
+            width: 100%;
+            max-width: 160px;
+            max-height: 54px;
+            object-fit: contain;
+        }
+        .partner-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 6px;
+        }
+        .partner-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .partner-card .partner-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            color: var(--red);
+            font-size: 0.86rem;
+            font-weight: 700;
+        }
+        .partner-card .partner-link svg {
+            width: 15px;
+            height: 15px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
         }
 
         /* ===== PLEDGE CTA ===== */
@@ -962,10 +1081,14 @@
             .footer-top { flex-direction: column; gap: 20px; }
             .manifesto-tabs { gap: 6px; }
             .manifesto-tab { padding: 10px 16px; font-size: 0.82rem; }
+            .manifesto-emphasis { padding: 18px 18px 18px 20px; }
+            .manifesto-intro .manifesto-emphasis { font-size: 1.05rem; }
             .principle-item { grid-template-columns: 40px 1fr; padding: 20px; gap: 14px; }
+            .partner-card { grid-template-columns: 1fr; }
+            .partner-logo { max-width: 220px; }
             .form-row { grid-template-columns: 1fr; }
             .modal-header, .modal-body { padding-left: 24px; padding-right: 24px; }
-            .mission, .manifesto, .team, .contact { padding: 64px 0; }
+            .mission, .manifesto, .team, .partners, .contact { padding: 64px 0; }
             .pledge-cta { padding: 64px 0; }
         }
 
@@ -1016,8 +1139,9 @@
                     <a href="#mission">Mission</a>
                     <a href="#manifesto">Manifesto</a>
                     <a href="#team">Team</a>
+                    <a href="#partners">Partners</a>
                     <div class="nav-dropdown">
-                        <a href="javascript:void(0)">Resources <svg class="dropdown-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></a>
+                        <a href="javascript:void(0)">Our work <svg class="dropdown-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></a>
                         <div class="nav-dropdown-menu">
                             <div class="nav-dropdown-menu-inner">
                                 <a href="resources.html">
@@ -1066,9 +1190,10 @@
         <a href="#mission" onclick="closeMobileMenu()">Mission</a>
         <a href="#manifesto" onclick="closeMobileMenu()">Manifesto</a>
         <a href="#team" onclick="closeMobileMenu()">Team</a>
-        <a href="resources.html" onclick="closeMobileMenu()">Resources: TEDxGda&#324;sk Talk</a>
-        <a href="resources.html#podcast-part-1" onclick="closeMobileMenu()">Resources: Krzysztof Zajaczkowski and Samir Rawjee podcast</a>
-        <a href="articles/road-to-a-better-self.pdf" target="_blank" onclick="closeMobileMenu()">Resources: Road to a Better Self</a>
+        <a href="#partners" onclick="closeMobileMenu()">Partners</a>
+        <a href="resources.html" onclick="closeMobileMenu()">Our work: TEDxGda&#324;sk talk</a>
+        <a href="resources.html#podcast-part-1" onclick="closeMobileMenu()">Our work: Krzysztof Zajaczkowski and Samir Rawjee podcast</a>
+        <a href="articles/road-to-a-better-self.pdf" target="_blank" onclick="closeMobileMenu()">Our work: Road to a better self</a>
         <a href="#contact" onclick="closeMobileMenu()">Contact</a>
         <button class="btn-pledge-mobile" onclick="closeMobileMenu(); openPledgeModal();">Sign the Pledge</button>
     </nav>
@@ -1197,26 +1322,32 @@
     <section class="manifesto" id="manifesto">
         <div class="container">
             <div class="manifesto-intro">
-                <p class="section-label">The FIRE Manifesto</p>
-                <h2 class="section-title">The New Essentials of Education</h2>
+                <p class="section-label">The FIRE manifesto</p>
+                <h2 class="section-title">The new essentials of education</h2>
                 <p>
                     As the World Economic Forum warns, &ldquo;anything that is routine or repetitive will be automated.&rdquo;
                     The task of education must be distilled down to those essential elements which computing intelligence cannot provide.
-                    These principles guide our vision across three dimensions.
+                </p>
+                <p class="manifesto-emphasis">
+                    We believe that education holds the power to shape a <strong>safer, more compassionate and flourishing world</strong>, and that this begins by placing <strong>human values at its very heart</strong>, embracing a holistic approach to learning and making the <strong>well-being of every child</strong> a fundamental priority.
                 </p>
                 <p style="font-style:italic;color:var(--navy);margin-top:16px;">
                     If we envisage post-industrial education as a small grey cube, then the new essentials of education can be seen as the transformation of this grey cube into a large, transparent, semi-permeable sphere.
                 </p>
+                <p>These principles guide our vision across three dimensions.</p>
             </div>
 
             <div class="manifesto-tabs">
-                <button class="manifesto-tab active" data-tab="general">General Principles</button>
-                <button class="manifesto-tab" data-tab="pedagogical">Pedagogical Principles</button>
-                <button class="manifesto-tab" data-tab="practical">Practical Suggestions</button>
+                <button class="manifesto-tab active" data-tab="general">General principles</button>
+                <button class="manifesto-tab" data-tab="pedagogical">Pedagogical principles</button>
+                <button class="manifesto-tab" data-tab="practical">Practical suggestions</button>
             </div>
 
             <!-- General Principles -->
             <div class="tab-panel active" id="tab-general">
+                <p class="manifesto-emphasis">
+                    We believe that the following principles are urgently needed to <strong>renew global education</strong> if it is to meet the <strong>needs of future generations</strong>.
+                </p>
                 <div class="principles-list">
                     <div class="principle-item">
                         <span class="principle-num">01</span>
@@ -1293,8 +1424,8 @@
 
             <!-- Pedagogical Principles -->
             <div class="tab-panel" id="tab-pedagogical">
-                <p style="color: var(--text-light); font-size: 0.95rem; line-height: 1.7; margin-bottom: 32px; max-width: 800px;">
-                    For these principles to work, it is imperative that teachers, coaches, and mentors are given the autonomy they need to work creatively, and for them to be fully supported by governments. One of the single-most important factors in effecting change in schools is through teacher collaboration.
+                <p class="manifesto-emphasis">
+                    We believe that these are some of the most important pedagogical principles necessary for a <strong>healthy learning environment</strong>. it is imperative that teachers, coaches, and mentors are given the <strong>autonomy they need to work creatively</strong> and for them to be fully supported by governments.
                 </p>
                 <div class="principles-list">
                     <div class="principle-item">
@@ -1372,8 +1503,8 @@
 
             <!-- Practical Suggestions -->
             <div class="tab-panel" id="tab-practical">
-                <p style="color: var(--text-light); font-size: 0.95rem; line-height: 1.7; margin-bottom: 32px; max-width: 800px;">
-                    Every school has its own unique character. These suggestions are indications based on different models and philosophies which have steered our forum. Spontaneity and creative freedom function best within a safe and clear structure.
+                <p class="manifesto-emphasis">
+                    We believe that these examples are core to making <strong>effective change in schools</strong>. With a few relatively simple changes &lsquo;on the ground&rsquo;, a school can transform its whole ethos towards a <strong>more holistic and nurturing environment</strong>. Every school has its own unique character and these suggestions are indications based on different models and philosophies which have steered our forum.
                 </p>
                 <div class="principles-list">
                     <div class="principle-item">
@@ -1594,6 +1725,31 @@
         </div>
     </section>
 
+    <!-- ========== PARTNERS ========== -->
+    <section class="partners" id="partners">
+        <div class="container">
+            <div class="partners-header">
+                <p class="section-label">Partner organisations</p>
+                <h2 class="section-title">Working with aligned education networks</h2>
+                <p>We collaborate with organisations that share our commitment to renewing education through human values, creativity, and holistic learning.</p>
+            </div>
+
+            <div class="partners-grid">
+                <a class="partner-card" href="https://etsn.eu/" target="_blank" rel="noopener">
+                    <img class="partner-logo" src="images/etsn.png" alt="ETSN logo">
+                    <div>
+                        <h3>ETSN</h3>
+                        <p>ETSN supports FIRE Foundation through a shared commitment to nurturing young people&rsquo;s talents within an open, inclusive, and values-led education network.</p>
+                        <span class="partner-link">
+                            Visit website
+                            <svg viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- ========== PLEDGE CTA ========== -->
     <section class="pledge-cta">
         <div class="container" style="position: relative; z-index: 1;">
@@ -1697,8 +1853,10 @@
                         <a href="#mission">Mission</a>
                         <a href="#manifesto">Manifesto</a>
                         <a href="#team">Team</a>
+                        <a href="#partners">Partners</a>
+                        <a href="resources.html">Our work</a>
                         <a href="#contact">Contact</a>
-                        <a href="privacy-policy.html">Privacy Policy</a>
+                        <a href="privacy-policy.html">Privacy policy</a>
                     </div>
                     <div class="footer-social">
                         <a href="https://www.linkedin.com/company/firefoundation-eu/" target="_blank" rel="noopener" aria-label="FIRE Foundation on LinkedIn">
